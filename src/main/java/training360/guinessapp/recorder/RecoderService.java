@@ -1,4 +1,4 @@
-package training360.guinessapp;
+package training360.guinessapp.recorder;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;

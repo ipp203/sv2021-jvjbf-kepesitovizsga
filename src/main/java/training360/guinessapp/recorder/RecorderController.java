@@ -1,4 +1,4 @@
-package training360.guinessapp;
+package training360.guinessapp.recorder;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
