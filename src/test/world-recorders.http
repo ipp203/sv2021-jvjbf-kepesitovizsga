@@ -1,6 +1,6 @@
 ### Világrekord mentése
 
-POST http://localhost:8080/api/worldrecord
+POST http://localhost:8080/api/worldrecords
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
     "value": 5.78,
     "unitOfMeasure": "meter",
     "dateOfRecord": "2001-11-11",
-    "recorderId": 1
+    "recorderId": 32
 }
 
 ### Világrekord mentése - hibakezelés
@@ -21,15 +21,15 @@ Content-Type: application/json
   "value": 5.78,
   "unitOfMeasure": "meter",
   "dateOfRecord": "2001-11-11",
-  "recorderId": 1
+  "recorderId": 32
 }
 
 ### Rekorder megdönt egy világrekordot (18 pont)
 
-PUT http://localhost:8080/api/worldrecords/1/beatrecords
+PUT http://localhost:8080/api/worldrecords/12/beatrecords
 Content-Type: application/json
 
 {
-  "recorderId": 2,
-  "newRecord": 6.78
+  "recorderId": 32,
+  "value": 6.78
 }
