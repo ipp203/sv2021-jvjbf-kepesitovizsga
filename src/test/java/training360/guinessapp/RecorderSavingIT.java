@@ -17,34 +17,35 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql(statements = {"delete from world_record", "delete from recorder"})
+//@Sql(statements = {"delete from world_record", "delete from recorder"})
+@Sql(statements = {"delete from recorder"})
 public class RecorderSavingIT {
 
-//    @Autowired
-//    TestRestTemplate template;
-//
-//    @Test
-//    void test_saveSuccessful() {
-//        RecorderCreateCommand inputCommand = new RecorderCreateCommand("Ben", LocalDate.of(1999, 9, 9));
-//        RecorderDto recorder = template.postForObject("/api/recorders", inputCommand, RecorderDto.class);
-//        assertEquals("Ben", recorder.getName());
-//        assertEquals(LocalDate.of(1999, 9, 9), recorder.getDateOfBirth());
-//    }
-//
-//    @Test
-//    void test_NameBlank() {
-//        RecorderCreateCommand inputCommand = new RecorderCreateCommand("", LocalDate.of(1999, 9, 9));
-//        Problem problem = template.postForObject("/api/recorders", inputCommand, Problem.class);
-//        assertEquals(Status.BAD_REQUEST, problem.getStatus());
-//        assertEquals("must not be blank", (((List<Map<String, String>>) problem.getParameters().get("violations")).get(0)).get("message"));
-//    }
-//
-//
-//    @Test
-//    void test_dateOfBirthInFuture() {
-//        RecorderCreateCommand inputCommand = new RecorderCreateCommand("", LocalDate.of(2999, 9, 9));
-//        Problem problem = template.postForObject("/api/recorders", inputCommand, Problem.class);
-//        assertEquals(Status.BAD_REQUEST, problem.getStatus());
-//        assertEquals("must be in the past", (((List<Map<String, String>>) problem.getParameters().get("violations")).get(0)).get("message"));
-//    }
+    @Autowired
+    TestRestTemplate template;
+
+    @Test
+    void test_saveSuccessful() {
+        RecorderCreateCommand inputCommand = new RecorderCreateCommand("Ben", LocalDate.of(1999, 9, 9));
+        RecorderDto recorder = template.postForObject("/api/recorders", inputCommand, RecorderDto.class);
+        assertEquals("Ben", recorder.getName());
+        assertEquals(LocalDate.of(1999, 9, 9), recorder.getDateOfBirth());
+    }
+
+    @Test
+    void test_NameBlank() {
+        RecorderCreateCommand inputCommand = new RecorderCreateCommand("", LocalDate.of(1999, 9, 9));
+        Problem problem = template.postForObject("/api/recorders", inputCommand, Problem.class);
+        assertEquals(Status.BAD_REQUEST, problem.getStatus());
+        assertEquals("must not be blank", (((List<Map<String, String>>) problem.getParameters().get("violations")).get(0)).get("message"));
+    }
+
+
+    @Test
+    void test_dateOfBirthInFuture() {
+        RecorderCreateCommand inputCommand = new RecorderCreateCommand("", LocalDate.of(2999, 9, 9));
+        Problem problem = template.postForObject("/api/recorders", inputCommand, Problem.class);
+        assertEquals(Status.BAD_REQUEST, problem.getStatus());
+        assertEquals("must be in the past", (((List<Map<String, String>>) problem.getParameters().get("violations")).get(0)).get("message"));
+    }
 }
