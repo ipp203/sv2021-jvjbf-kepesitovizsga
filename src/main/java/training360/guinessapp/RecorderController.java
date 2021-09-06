@@ -8,12 +8,12 @@ import training360.guinessapp.dto.RecorderShortDto;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
 public class RecorderController {
 
-    private RecoderService service;
+    private final RecoderService service;
 
     public RecorderController(RecoderService service) {
         this.service = service;
@@ -21,12 +21,12 @@ public class RecorderController {
 
     @PostMapping("/api/recorders")
     @ResponseStatus(HttpStatus.CREATED)
-    public RecorderDto createRecorder(@Valid @RequestBody RecorderCreateCommand command){
+    public RecorderDto createRecorder(@Valid @RequestBody RecorderCreateCommand command) {
         return service.createRecorder(command);
     }
 
     @GetMapping("/api/recorders")
-    public List<RecorderShortDto> listRecorders(){
+    public List<RecorderShortDto> listRecorders() {
         return service.listRecorders();
     }
 }

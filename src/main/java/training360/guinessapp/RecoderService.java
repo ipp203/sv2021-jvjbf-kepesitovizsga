@@ -10,8 +10,8 @@ import java.util.List;
 
 @Service
 public class RecoderService {
-    private RecorderRepository repository;
-    private ModelMapper modelMapper;
+    private final RecorderRepository repository;
+    private final ModelMapper modelMapper;
 
     public RecoderService(RecorderRepository repository, ModelMapper modelMapper) {
         this.repository = repository;
